@@ -1,0 +1,35 @@
+
+##########################################################
+
+#Function to execute the Department Maintenace on a terminal
+deptmaint () {
+    . /home/trngxx/e\&r/unix/project/dev/bin/dept_maint_scrn.sh
+    #gnome-terminal --command="bash /home/trngxx/e\&r/unix/project/dev/bin/dept_maint_scrn.sh"  ##for running the script in new terminal...only works on gnome
+}
+
+#Creates .dat file at login
+if ! [ -e /home/trngxx/e\&r/unix/project/data/dept.dat -a -e /home/trngxx/e\&r/unix/project/data/emp.dat ];then
+    touch /home/trngxx/e\&r/unix/project/data/dept.dat /home/trngxx/e\&r/unix/project/data/emp.dat
+fi
+
+#creates backup of all files at project level
+runbackup () {
+    if [ -e /home/trngxx/e\&r/unix/projbackup/projbackup\<`date +%F`\>.gz ]; then
+        read -p "backup file already exist, Do you want to overwrite it? [y/n] " ans
+        case $ans in
+            [yY]) rm /home/trngxx/e\&r/unix/projbackup/projbackup\<`date +%F`\>.gz
+            tar -czf projbackup\<`date +%F`\>.gz /home/trngxx/e\&r/unix/project
+            mv projbackup\<`date +%F`\>.gz /home/trngxx/e\&r/unix/projbackup/ ;;
+
+            [nN]) echo backup cancelled;;
+            *) echo INVALID input;;
+        esac
+    else
+        tar -czf projbackup\<`date +%F`\>.gz /home/trngxx/e\&r/unix/project
+        mv projbackup\<`date +%F`\>.gz /home/trngxx/e\&r/unix/projbackup/
+    fi
+}
+
+#mkworkdir
+
+##########################################################
