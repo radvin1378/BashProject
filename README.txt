@@ -1,6 +1,6 @@
 This is a Terminal based application for entering and finding employee details.
 
-I got hold of this document(Project_Specifications.docx) and made the application just for practising bash scripting.
+I got hold of this document(Project_Specifications.docx) and made the application just for practicing bash scripting.
 
 NOTE: Read the Project_Specification.docx file carefully before installing.
 
